@@ -33,4 +33,11 @@ class EvenementController extends AbstractController
     {
         return $this->render('evenement/create.html.twig');
     }
+
+    /**
+     * @@Route("/evenement/{id}",name="app_evenement_single")
+     */
+    public function show_single_evenement(){
+        return $this->render('evenement/show_single.html.twig');
+    }
 }
