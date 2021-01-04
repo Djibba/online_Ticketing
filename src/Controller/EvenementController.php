@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Evenement;
+use App\Form\EvenementType;
+use App\Repository\EvenementRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EvenementController extends AbstractController
 {
@@ -21,23 +26,44 @@ class EvenementController extends AbstractController
     /**
      * @Route("/evenements",name="app_evenement")
      */
-    public function show_evenement()
+    public function show_evenement(EvenementRepository $repoEven)
     {
-        return $this->render('evenement/show.html.twig');
+        $evenement = $repoEven->findAll();
+
+        return $this->render('evenement/show.html.twig', [
+            'evenements' => $evenement
+        ]);
     }
 
     /**
      * @Route("/evenement_new",name="app_evenement_create")
      */
-    public function create()
+    public function create(Request $request, EntityManagerInterface $manager)
     {
-        return $this->render('evenement/create.html.twig');
+
+        $evenement = new Evenement();
+        $form = $this->createForm(EvenementType::class, $evenement);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) { 
+            $evenement->setCreatedAt(new \DateTime());
+            
+            $manager->persist($evenement);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_evenement', ['id' => $evenement->getId()]);
+        }
+
+        return $this->render('evenement/create.html.twig', [
+            'formEvenement'=> $form->createView()
+        ]);
     }
 
     /**
      * @@Route("/evenement/{id}",name="app_evenement_single")
      */
     public function show_single_evenement(){
+        
         return $this->render('evenement/show_single.html.twig');
     }
 }
