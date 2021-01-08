@@ -124,5 +124,12 @@ class EvenementController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/about-us",name="app_evenement_about")
+     */
+    public function about()
+    {
+        return $this->render('evenement/about.html.twig');
+    }
     
 }

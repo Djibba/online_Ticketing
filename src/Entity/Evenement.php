@@ -21,6 +21,7 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide")
      */
     private $nom;
 
@@ -37,6 +38,7 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide")
      */
     private $Lieu;
 
@@ -47,6 +49,7 @@ class Evenement
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Ce champ ne doit pas être vide")
      */
     private $Prix;
 

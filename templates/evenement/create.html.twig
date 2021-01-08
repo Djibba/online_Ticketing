@@ -2,15 +2,14 @@
 
 {% form_theme formEvenement 'bootstrap_4_layout.html.twig' %}
 
+
 {% block body %}
 <style>
     .example-wrapper {
         margin: 0px 0px;
-        font: 10px/1.5 sans-serif;
-        background-color: grey;
+        font: 15px/1.5 sans-serif;
         text-align: left;
         padding: 100px;
-        color: white
     }
 
     .example-wrapper code {
@@ -18,23 +17,31 @@
         padding: 2px 6px;
     }
 </style>
-<div class="col-xl-6">
 <div class="example-wrapper">
-    <h1>Création d'événement</h1>
-    {{ form_start(formEvenement) }}
-
-    {{ form_row(formEvenement.nom, {'attr': { 'placeholder' : "Nom de l'événément"} }) }}
-    {{ form_row(formEvenement.image) }}
-    {{ form_row(formEvenement.Lieu, {'attr': { 'placeholder' : "Lieu de l'événément"} }) }}
-    {{ form_row(formEvenement.Prix, {'attr': { 'placeholder' : "Prix de l'événément"} }) }}
-    {{ form_row(formEvenement.categorie) }}
-
     <div class="row">
-        <div class="col-sm-12 text-right">
-            <button type="submit" class="btn btn-success">Ajouter un Evenement</button>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('app_home') }}">Accueil</a></li>
+        </ol>
+        <div class="col-md-10 mx-auto">
+
+            <strong>
+                <h1>Création d'événement</h1>
+            </strong>
+            {{ form_start(formEvenement) }}
+
+            {{ form_row(formEvenement.nom, {'attr': { 'placeholder' : "Nom de l'événément"} }) }}
+            {{ form_row(formEvenement.image) }}
+            {{ form_row(formEvenement.Lieu, {'attr': { 'placeholder' : "Lieu de l'événément"} }) }}
+            {{ form_row(formEvenement.Prix, {'attr': { 'placeholder' : "Prix de l'événément"} }) }}
+            {{ form_row(formEvenement.categorie) }}
+
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <button type="submit" class="btn btn-primary">Ajouter un Evenement</button>
+                </div>
+            </div>
+            {{ form_end(formEvenement) }}
         </div>
     </div>
-    {{ form_end(formEvenement) }}
-</div>
 </div>
 {% endblock %}

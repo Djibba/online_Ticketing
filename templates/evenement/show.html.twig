@@ -3,11 +3,9 @@
 {% block body %}
 <style>
     .example-wrapper {
-        font: 10px/1.5 sans-serif;
-        background-color: grey;
+        font: 15px/1.5 sans-serif;
         text-align: left;
         padding: 100px;
-        color: white
     }
 
     .example-wrapper code {
@@ -17,6 +15,12 @@
 </style>
 
 <div class="row example-wrapper">
+    <ol class="breadcrumb">
+        <li><a href="{{ path('app_home') }}">Accueil</a></li>
+    </ol>
+    <header class="page-header">
+        <h1 class="page-title"> {{ evenements | length }} Evenements</h1>
+    </header>
     {% for evenement in evenements %}
     <article>
         <div class="col-xl-6">
@@ -29,6 +33,8 @@
                     <h2>Prix : {{ evenement.Prix}}</h2>
                     <div class="content">
                         <img src="{{ evenement.image }}" alt="">
+                        <a href="{{ path('app_evenement_single', {'id' : evenement.id }) }}"
+                            class="btn btn-info">Acheter un billet</a>
                         <a href="{{ path('app_evenement_single', {'id' : evenement.id }) }}"
                             class="btn btn-primary">Plus de détails</a>
                     </div>

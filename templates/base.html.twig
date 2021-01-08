@@ -3,14 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}TicBaDjitte!{% endblock %}</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen">
     <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="css/meanmenu.css">
     {% block stylesheets %}{% endblock %}
 </head>
 
@@ -44,7 +47,7 @@
                         </ul>
                     </li>
                     <li><a href="#">Créer une billeterie</a></li>
-                    <li><a href="#">A propos</a></li>
+                    <li><a href="{{ path('app_evenement_about') }}">A propos</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
@@ -100,7 +103,11 @@
         </div>
     </nav> -->
 
-    {% block body %}{% endblock %}
+    <main role="main" >
+        {% block body %}{% endblock %}
+    </main>
+
+    
     <footer id="footer" class="top-space">
 
         <div class="footer1">
@@ -122,7 +129,7 @@
                     </div>
 
                     <div class="col-md-3 widget">
-                        <h3 class="widget-title">Follow me</h3>
+                        <h3 class="widget-title">Suivez nous</h3>
                         <div class="widget-body">
                             <p class="follow-me-icons">
                                 <a href=""><i class="fa fa-twitter fa-2"></i></a>

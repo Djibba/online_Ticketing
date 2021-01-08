@@ -4,8 +4,7 @@
 <style>
     .example-wrapper {
         margin: 0px 0px;
-        font: 10px/1.5 sans-serif;
-        background-color: grey;
+        font: 15px/1.5 sans-serif;
         text-align: left;
         padding: 100px
     }
@@ -17,11 +16,17 @@
 </style>
 
 <div class="row example-wrapper">
+    <ol class="breadcrumb">
+        <li><a href="{{ path('app_home') }}">Accueil</a></li>
+    </ol>
     <article>
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
-                    <h2>{{ evenements.nom }}</h2>
+
+                    <header class="page-header">
+                        <h1 class="page-title">{{ evenements.nom}}</h1>
+                    </header>
                     <div class="metadata">Créé le {{ evenements.createdAt | date("d/m/Y") }} à
                         {{ evenements.createdAt | date("H:i")}} dans la catégorie {{ evenements.categorie}}</div>
                     <h2>Lieu : {{ evenements.Lieu}}</h2>
@@ -39,7 +44,9 @@
                     <div class="row">
                         <div class="col-sm-12 text-right">
                             <a href="{{ path('app_evenement_edit', {'id' : evenements.id }) }}"
-                                class="btn btn-success">Modifier</a>
+                                class="btn btn-info">Acheter le billet</a>
+                            <a href="{{ path('app_evenement_edit', {'id' : evenements.id }) }}"
+                                class="btn btn-primary">Modifier</a>
                             <a href="{{ path('app_evenement_delete', {'id' : evenements.id }) }}"
                                 class="btn btn-danger">Supprimer</a>
                         </div>

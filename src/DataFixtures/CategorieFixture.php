@@ -10,9 +10,10 @@ class CategorieFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i=1; $i <=10 ; $i++) { 
+        $tab = ['Sport', 'Concert','Cinéma', 'Transport','Autres'];
+        for ($i=0; $i <=4 ; $i++) { 
             $categorie = new Categorie();
-            $categorie->setNomCategorie("Categorie n°$i");
+            $categorie->setNomCategorie("$tab[$i]");
 
             $manager->persist($categorie);
         }
