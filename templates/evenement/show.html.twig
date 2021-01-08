@@ -2,39 +2,40 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .example-wrapper {
+        font: 10px/1.5 sans-serif;
+        background-color: grey;
+        text-align: left;
+        padding: 100px;
+        color: white
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 4px;
+    }
 </style>
 
-    <div class="row example-wrapper">
-        {% for evenement in evenements %}
-                <article>
-                    <div class="col-xl-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2>{{ evenement.nom }}</h2>
-                                <div class="metadata">Créé le {{ evenement.createdAt | date("d/m/Y") }} à {{ evenement.createdAt | date("H:i")}} dans la catégorie {{ evenement.categorie}}</div>
-                                <h2>Lieu : {{ evenement.Lieu}}</h2>
-                                <h2>Prix : {{ evenement.Prix}}</h2>
-                                <div class="content">
-                                    <img src="{{ evenement.image }}" alt="">
-                                    
-                                </div>
-                            </div>
-                        </div>
+<div class="row example-wrapper">
+    {% for evenement in evenements %}
+    <article>
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>{{ evenement.nom }}</h2>
+                    <div class="metadata">Créé le {{ evenement.createdAt | date("d/m/Y") }} à
+                        {{ evenement.createdAt | date("H:i")}} dans la catégorie {{ evenement.categorie}}</div>
+                    <h2>Lieu : {{ evenement.Lieu}}</h2>
+                    <h2>Prix : {{ evenement.Prix}}</h2>
+                    <div class="content">
+                        <img src="{{ evenement.image }}" alt="">
+                        <a href="{{ path('app_evenement_single', {'id' : evenement.id }) }}"
+                            class="btn btn-primary">Plus de détails</a>
                     </div>
-                </article>
-        {% endfor %}
-    </div>
-    <div class="example-wrapper">
-        <article>
-            <h1> Titre de l'événement</h1>
-            <div class="metadata">Ecrit le 04/11/1997 à 18:05</div>
-            <div class="content">
-                <img src="" alt="">
-                <p>Ceci est un test</p>
-                <a href="#" class="btn btn-primary">Lire la suite</a>
+                </div>
             </div>
-        </article>
-    </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
 {% endblock %}

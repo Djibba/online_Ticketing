@@ -4,20 +4,37 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .example-wrapper {
+        margin: 0px 0px;
+        font: 10px/1.5 sans-serif;
+        background-color: grey;
+        text-align: left;
+        padding: 100px;
+        color: white
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
 </style>
-    <div class="example-wrapper">
+<div class="col-xl-6">
+<div class="example-wrapper">
     <h1>Création d'événement</h1>
-     {{ form_start(formEvenement) }}
+    {{ form_start(formEvenement) }}
 
-        {{ form_row(formEvenement.nom, {'attr': { 'placeholder' : "Nom de l'événément"} }) }}
-        {{ form_row(formEvenement.image, {'attr': { 'placeholder' : "Image de l'événément"} }) }}
-        {{ form_row(formEvenement.Lieu, {'attr': { 'placeholder' : "Lieu de l'événément"} }) }}
-        {{ form_row(formEvenement.Prix, {'attr': { 'placeholder' : "Prix de l'événément"} }) }}
-        {{ form_row(formEvenement.categorie) }}
+    {{ form_row(formEvenement.nom, {'attr': { 'placeholder' : "Nom de l'événément"} }) }}
+    {{ form_row(formEvenement.image) }}
+    {{ form_row(formEvenement.Lieu, {'attr': { 'placeholder' : "Lieu de l'événément"} }) }}
+    {{ form_row(formEvenement.Prix, {'attr': { 'placeholder' : "Prix de l'événément"} }) }}
+    {{ form_row(formEvenement.categorie) }}
 
-        <button type="submit" class="btn btn-success">Ajouter</button>
-     {{ form_end(formEvenement) }}
-    </div> 
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button type="submit" class="btn btn-success">Ajouter un Evenement</button>
+        </div>
+    </div>
+    {{ form_end(formEvenement) }}
+</div>
+</div>
 {% endblock %}
