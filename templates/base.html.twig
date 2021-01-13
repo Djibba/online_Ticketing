@@ -42,13 +42,13 @@
                             <li><a href="#">Autres</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Créer une billeterie</a></li>
+                    <li><a href="{{ path('app_billeterie_create') }}">Créer une billeterie</a></li>
                     <li><a href="{{ path('app_evenement') }}">Evenements </a></li>
                     <li><a href="{{ path('app_evenement_create') }}">Créer un
                             événement </a></li>
                     <li><a href="{{ path('app_evenement_about') }}">A propos</a></li>
                     <li><a href="{{ path('app_evenement_contact') }}">Contact</a></li>
-                    <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+                    <li><a class="btn pull-right" href="{{ path('app_login') }}">Se connecter</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -123,7 +123,7 @@
                                 <a href="{{ path('app_evenement') }}">Evenements</a> |
                                 <a href="{{ path('app_evenement_about') }}">A propos</a> |
                                 <a href="{{ path('app_evenement_contact') }}">Contact</a> |
-                                <b><a href="signup.html">Sign up</a></b>
+                                <b><a href="signup.html">Se connecter</a></b>
                             </p>
                         </div>
                     </div>

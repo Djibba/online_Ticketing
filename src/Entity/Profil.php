@@ -51,6 +51,11 @@ class Profil
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->getProfil();
+    }
+
     /**
      * @return Collection|User[]
      */

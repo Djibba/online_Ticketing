@@ -29,9 +29,15 @@ class Categorie
      */
     private $evenements;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Billeterie::class, mappedBy="categorieBilleterie")
+     */
+    private $billeteries;
+
     public function __construct()
     {
         $this->evenements = new ArrayCollection();
+        $this->billeteries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,5 +90,35 @@ class Categorie
     public function __toString()
     {
         return $this->getNomCategorie();
+    }
+
+    /**
+     * @return Collection|Billeterie[]
+     */
+    public function getBilleteries(): Collection
+    {
+        return $this->billeteries;
+    }
+
+    public function addBilletery(Billeterie $billetery): self
+    {
+        if (!$this->billeteries->contains($billetery)) {
+            $this->billeteries[] = $billetery;
+            $billetery->setCategorieBilleterie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBilletery(Billeterie $billetery): self
+    {
+        if ($this->billeteries->removeElement($billetery)) {
+            // set the owning side to null (unless already changed)
+            if ($billetery->getCategorieBilleterie() === $this) {
+                $billetery->setCategorieBilleterie(null);
+            }
+        }
+
+        return $this;
     }
 }
