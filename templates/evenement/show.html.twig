@@ -10,7 +10,7 @@
 
     .example-wrapper code {
         background: #F5F5F5;
-        padding: 2px 4px;
+        padding: 4px 4px;
     }
 </style>
 
@@ -23,25 +23,27 @@
     </header>
     {% for evenement in evenements %}
     <article>
-        <div class="col-xl-6">
+        <div class="col-sm-4">
             <div class="card">
-                <div class="card-body">
-                    <h2>{{ evenement.nom }}</h2>
-                    <div class="metadata">Créé le {{ evenement.createdAt | date("d/m/Y") }} à
-                        {{ evenement.createdAt | date("H:i")}} dans la catégorie {{ evenement.categorie}}</div>
-                    <h2>Lieu : {{ evenement.Lieu}}</h2>
-                    <h2>Prix : {{ evenement.Prix}}</h2>
-                    <div class="content">
-                        <img src="{{ evenement.image }}" alt="">
-                        <a href="{{ path('app_evenement_single', {'id' : evenement.id }) }}"
-                            class="btn btn-info">Acheter un billet</a>
-                        <a href="{{ path('app_evenement_single', {'id' : evenement.id }) }}"
-                            class="btn btn-primary">Plus de détails</a>
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ evenement.image }}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ evenement.nom }}</h4>
+                        <div class="metadata">Créé le {{ evenement.createdAt | date("d/m/Y") }} à
+                            {{ evenement.createdAt | date("H:i")}} dans la catégorie {{ evenement.categorie}}</div>
+                        <h2>{{ evenement.Lieu}}</h2>
+                        <h2>{{ evenement.Prix}}</h2>
+                        <div class="content">
+                            <a href="{{ path('app_evenement_single', {'id' : evenement.id }) }}"
+                                class="btn btn-info">Acheter </a><a href="{{ path('app_evenement_single', {'id' : evenement.id }) }}"
+                                class="btn btn-primary">Plus de détails</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </article>
     {% endfor %}
+    <hr>
 </div>
 {% endblock %}

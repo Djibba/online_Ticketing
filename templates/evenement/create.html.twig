@@ -2,7 +2,6 @@
 
 {% form_theme formEvenement 'bootstrap_4_layout.html.twig' %}
 
-
 {% block body %}
 <style>
     .example-wrapper {
@@ -24,20 +23,16 @@
         </ol>
         <div class="col-md-10 mx-auto">
 
-            <strong>
-                <h1>Création d'événement</h1>
-            </strong>
+            <header class="page-header">
+                <h1 class="page-title">Création de l'événement</h1>
+            </header>
             {{ form_start(formEvenement) }}
 
-            {{ form_row(formEvenement.nom, {'attr': { 'placeholder' : "Nom de l'événément"} }) }}
-            {{ form_row(formEvenement.image) }}
-            {{ form_row(formEvenement.Lieu, {'attr': { 'placeholder' : "Lieu de l'événément"} }) }}
-            {{ form_row(formEvenement.Prix, {'attr': { 'placeholder' : "Prix de l'événément"} }) }}
-            {{ form_row(formEvenement.categorie) }}
+            {{ form_widget(formEvenement) }}
 
             <div class="row">
                 <div class="col-sm-12 text-right">
-                    <button type="submit" class="btn btn-primary">Ajouter un Evenement</button>
+                    <button type="submit" class="btn btn-primary" formnovalidate>Ajouter un Evenement</button>
                 </div>
             </div>
             {{ form_end(formEvenement) }}

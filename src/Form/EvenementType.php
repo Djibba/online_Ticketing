@@ -6,9 +6,9 @@ use App\Entity\Categorie;
 use App\Entity\Evenement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EvenementType extends AbstractType
 {
@@ -16,7 +16,13 @@ class EvenementType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('image', FileType::class, array('label' => "Image de l'événement"))
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image (PNG, JPEG)',
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => false,
+                'imagine_pattern' => 'squared_thumbnail_smail'
+            ])
             ->add('Lieu')
             ->add('Prix')
             ->add('categorie', EntityType::class,[

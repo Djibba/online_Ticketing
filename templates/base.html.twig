@@ -4,42 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}TicBaDjitte!{% endblock %}</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" media="screen" href="css/family.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen">
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- Meanmenu CSS -->
-        <link rel="stylesheet" href="css/meanmenu.css">
-    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="css/meanmenu.css">
+
+    {% block stylesheets %}
+    
+    {% endblock %}
 </head>
 
 <body class="home">
-
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top headroom">
         <div class="container">
+            <div class="navbar-header">
+                <!-- Button for smallest screens -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+            </div>
             <div class="navbar-collapse collapse">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ path('app_home') }}">Accueil</a>
-                </div>
-                <ul class="nav navbar-nav pull-center">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="active"><a href="{{ path('app_home') }}">Accueil</a></li>
                     <li><a href="{{ path('app_evenement') }}">Evenements </a></li>
-                    <li><a href="{{ path('app_evenement_create') }}">Créer un événement </a></li>
+                    <li><a href="{{ path('app_evenement_create') }}">Créer un
+                            événement </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false">Billeterie <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Billeterie <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
                             <li><a href="#">Sport</a></li>
                             <li><a href="#">Transport</a></li>
                             <li><a href="#">Cinéma</a></li>
@@ -48,10 +48,8 @@
                     </li>
                     <li><a href="#">Créer une billeterie</a></li>
                     <li><a href="{{ path('app_evenement_about') }}">A propos</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <a class="btn" href="#">SIGN IN / SIGN UP</a></>
+                    <li><a href="{{ path('app_evenement_contact') }}">Contact</a></li>
+                    <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -59,55 +57,47 @@
     </div>
     <!-- /.navbar -->
 
-    <!-- <nav class="navbar navbar-default">
-        <div class="container-fluid">
+    {# <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top headroom">
+        <div class="container">
+            <div class="navbar-collapse collapse">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                 <a class="navbar-brand" href="{{ path('app_home') }}">Accueil</a>
             </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ path('app_evenement') }}">Evenements </a></li>
-                    <li><a href="{{ path('app_evenement_create') }}">Créer un événement </a></li>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav pull-right">
+                    <li ><a href="{{ path('app_evenement') }}">Evenements </a></li>
+                    <li ><a href="{{ path('app_evenement_create') }}">Créer un
+                            événement </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                            aria-expanded="false">Billeterie <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Sport</a></li>
-                            <li><a href="#">Transport</a></li>
-                            <li><a href="#">Cinéma</a></li>
-                            <li><a href="#">Autres</a></li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Billeterie <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li ><a class="dropdown-item" href="#">Sport</a></li>
+                            <li ><a class="dropdown-item" href="#">Transport</a></li>
+                            <li ><a class="dropdown-item" href="#">Cinéma</a></li>
+                            <li ><a class="dropdown-item" href="#">Autres</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Créer une billeterie</a></li>
-                    <li><a href="#">A propos</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ path('app_evenement_about') }}">A propos</a></li>
+                    <li><a href="{{ path('app_evenement_contact') }}">Contact</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Recherche</button>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" class="btn btn-primary">Login</a></li>
+                <ul class="nav navbar-nav pull-right">
+                    <a class="btn" href="#">SIGN IN / SIGN UP</a></>
                 </ul>
+                </div>
             </div>
+            <!--/.nav-collapse -->
         </div>
-    </nav> -->
+    </div>
+    <!-- /.navbar --> #}
 
-    <main role="main" >
+    <main role="main">
         {% block body %}{% endblock %}
     </main>
 
-    
     <footer id="footer" class="top-space">
 
         <div class="footer1">
@@ -189,13 +179,15 @@
 
     </footer>
 
-    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    {% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="assets/js/headroom.min.js"></script>
     <script src="assets/js/jQuery.headroom.min.js"></script>
-    <script src="assets/js/template.js"></script>
-    {% block javascripts %}{% endblock %}
+    <script src="assets/js/template.js"></script>{% endblock %}
 </body>
 
 </html>

@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<style>
+    .example-wrapper {
+        margin: 0px 0px;
+        font: 15px/1.5 sans-serif;
+        text-align: left;
+        padding: 100px
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>
+<div class="example-wrapper">
+    <ol class="breadcrumb">
+        <li><a href="{{ path('app_home') }}">Accueil</a></li>
+    </ol>
+    <header class="page-header">
+        <h1 class="page-title">Contact</h1>
+    </header>
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{type}}" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endfor %}
+    {{ form_start(formContact) }}
+
+    <div class="row">
+        <div class="col-sm-4">
+            {{ form_row(formContact.Nom, {'attr': { 'placeholder' : "Nom et Prénom"} }) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(formContact.Email, {'attr': { 'placeholder' : "Email"} }) }}
+        </div>
+        <div class="col-sm-4">
+            {{ form_row(formContact.Telephone, {'attr': { 'placeholder' : "Téléphone"} }) }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            {{ form_row(formContact.Message, {'attr': { 'placeholder' : "Votre message"},  }) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button type="submit" class="btn btn-primary" formnovalidate>Envoyer un message</button>
+        </div>
+    </div>
+    {{ form_end(formContact) }}
+</div>
+{% endblock %}

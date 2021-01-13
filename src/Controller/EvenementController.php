@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Categorie;
 use App\Entity\Evenement;
+use App\Form\ContactType;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,7 +33,7 @@ class EvenementController extends AbstractController
      */
     public function show_evenement(EvenementRepository $repoEven)
     {
-        $evenement = $repoEven->findAll();
+        $evenement = $repoEven->findBy([], ['createdAt' => 'DESC']);
 
         return $this->render('evenement/show.html.twig', [
             'evenements' => $evenement
@@ -40,25 +42,22 @@ class EvenementController extends AbstractController
 
     /**
      * @Route("/evenement_new",name="app_evenement_create")
-     *@Route("/evenement_{id}_edit",name="app_evenement_edit")
      */
     public function create(Request $request, EntityManagerInterface $manager): Response
     {
 
         $evenement = new Evenement();
+
         $form = $this->createForm(EvenementType::class, $evenement);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) { 
-
-            if (!$evenement->getId()) {
-                $evenement->setCreatedAt(new \DateTime());
-            }
             
             $manager->persist($evenement);
             $manager->flush();
 
-            return $this->redirectToRoute('app_evenement', ['id' => $evenement->getId()]);
+            return $this->redirectToRoute('app_evenement');
         }
 
         return $this->render('evenement/create.html.twig', [
@@ -67,22 +66,12 @@ class EvenementController extends AbstractController
     }
 
     /**
-     *@Route("/evenement_{id}_edit",name="app_evenement_edit")
+     *@Route("/evenement_{id<[0-9]+>}_edit",name="app_evenement_edit")
      */
     public function edit(Evenement $evenement,Request $request, EntityManagerInterface $manager)
     {
 
-        $form = $this->createFormBuilder($evenement)
-            ->add('nom')
-            //->add('image', FileType::class, array('label' => "Image de l'événement"))
-            ->add('Lieu')
-            ->add('Prix')
-            ->add('categorie', EntityType::class,[
-                'class' => Categorie::class,
-                'choice_label' => 'nomCategorie'
-                ])
-            ->getForm()
-        ;
+        $form = $this->createForm(EvenementType::class, $evenement);
         
         $form->handleRequest($request);
 
@@ -100,7 +89,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/evenenemt_{id}_delete", name="app_evenement_delete")
+     * @Route("/evenenemt_{id<[0-9]+>}_delete", name="app_evenement_delete")
      */
     public function delete(Evenement $evenement, ENtityManagerInterface $manager)
     {
@@ -111,7 +100,7 @@ class EvenementController extends AbstractController
     }
 
     /**
-     * @Route("/evenement_{id}",name="app_evenement_single")
+     * @Route("/evenement_{id<[0-9]+>}",name="app_evenement_single")
      */
     public function show_single_evenement(EvenementRepository $repoEnv, $id): Response
     {
@@ -130,6 +119,29 @@ class EvenementController extends AbstractController
     public function about()
     {
         return $this->render('evenement/about.html.twig');
+    }
+
+    /**
+     * @Route("/contact",name="app_evenement_contact")
+     */
+    public function contact(Request $request, EntityManagerInterface $manager)
+    {
+        $contact = new Contact();
+        $form =$this->createForm(ContactType::class, $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) { 
+
+            $manager->persist($contact);
+            $manager->flush();
+
+            $this->addFlash('success', 'Message envoyé avec succés');
+        }
+
+        return $this->render('evenement/contact.html.twig', [
+            'formContact' => $form->createView()
+        ]);
     }
     
 }
