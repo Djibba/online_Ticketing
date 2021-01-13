@@ -20,7 +20,6 @@
     
     {% endblock %}
 </head>
-
 <body class="home">
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top headroom">
@@ -29,16 +28,13 @@
                 <!-- Button for smallest screens -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                         class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+                <a class="navbar-brand"><img  class="img-responsive" width="150" height="50" data-sticky-width="150" data-sticky-height="40" src="assets/images/logo_white.png" alt="Progressus HTML5 template"></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="{{ path('app_home') }}">Accueil</a></li>
-                    <li><a href="{{ path('app_evenement') }}">Evenements </a></li>
-                    <li><a href="{{ path('app_evenement_create') }}">Créer un
-                            événement </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Billeterie <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Billeteries <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Sport</a></li>
                             <li><a href="#">Transport</a></li>
@@ -47,6 +43,9 @@
                         </ul>
                     </li>
                     <li><a href="#">Créer une billeterie</a></li>
+                    <li><a href="{{ path('app_evenement') }}">Evenements </a></li>
+                    <li><a href="{{ path('app_evenement_create') }}">Créer un
+                            événement </a></li>
                     <li><a href="{{ path('app_evenement_about') }}">A propos</a></li>
                     <li><a href="{{ path('app_evenement_contact') }}">Contact</a></li>
                     <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
@@ -57,42 +56,6 @@
     </div>
     <!-- /.navbar -->
 
-    {# <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top headroom">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
-                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="{{ path('app_home') }}">Accueil</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right">
-                    <li ><a href="{{ path('app_evenement') }}">Evenements </a></li>
-                    <li ><a href="{{ path('app_evenement_create') }}">Créer un
-                            événement </a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Billeterie <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li ><a class="dropdown-item" href="#">Sport</a></li>
-                            <li ><a class="dropdown-item" href="#">Transport</a></li>
-                            <li ><a class="dropdown-item" href="#">Cinéma</a></li>
-                            <li ><a class="dropdown-item" href="#">Autres</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Créer une billeterie</a></li>
-                    <li><a href="{{ path('app_evenement_about') }}">A propos</a></li>
-                    <li><a href="{{ path('app_evenement_contact') }}">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <a class="btn" href="#">SIGN IN / SIGN UP</a></>
-                </ul>
-                </div>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </div>
-    <!-- /.navbar --> #}
 
     <main role="main">
         {% block body %}{% endblock %}
@@ -155,10 +118,11 @@
                     <div class="col-md-6 widget">
                         <div class="widget-body">
                             <p class="simplenav">
-                                <a href="#">Home</a> |
-                                <a href="about.html">About</a> |
-                                <a href="sidebar-right.html">Sidebar</a> |
-                                <a href="contact.html">Contact</a> |
+                                <a href="{{ path('app_home') }}">Accueil</a> |
+                                <a href="#">Billeterie</a> |
+                                <a href="{{ path('app_evenement') }}">Evenements</a> |
+                                <a href="{{ path('app_evenement_about') }}">A propos</a> |
+                                <a href="{{ path('app_evenement_contact') }}">Contact</a> |
                                 <b><a href="signup.html">Sign up</a></b>
                             </p>
                         </div>

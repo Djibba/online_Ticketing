@@ -12,6 +12,16 @@
         background: #F5F5F5;
         padding: 4px 4px;
     }
+
+    .vich-image{
+        .form-check {
+            @extend .mt-3;  
+        }
+
+        img {
+
+        }
+    }
 </style>
 
 <div class="row example-wrapper">
@@ -26,10 +36,10 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ evenement.image }}" class="card-img-top" alt="">
+                    <img src="{{ vich_uploader_asset(evenement) }}" alt="" />
                     <div class="card-body">
                         <h4 class="card-title">{{ evenement.nom }}</h4>
-                        <div class="metadata">Créé le {{ evenement.createdAt | date("d/m/Y") }} à
+                        <div class="metadata text-break">Créé le {{ evenement.createdAt | date("d/m/Y") }} à
                             {{ evenement.createdAt | date("H:i")}} dans la catégorie {{ evenement.categorie}}</div>
                         <h2>{{ evenement.Lieu}}</h2>
                         <h2>{{ evenement.Prix}}</h2>
